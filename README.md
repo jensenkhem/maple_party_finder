@@ -4,7 +4,7 @@ This is the code for a maplestory party finding/building application
 
 ## How to run/build the app:
 
-* Ruby version
+* The things outlined below are placeholders!
 
 * System dependencies
 
