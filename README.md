@@ -1,11 +1,10 @@
-# README
+# Maplestory party finder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the code for a maplestory party finding/building application
 
-Things you may want to cover:
+## How to run/build the app:
 
-* Ruby version
+* The things outlined below are placeholders!
 
 * System dependencies
 
