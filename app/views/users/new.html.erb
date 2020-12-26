@@ -1,15 +1,16 @@
 <%provide(:title, "Signup")%>
-<h1> Signup </h1>
+<h1 style="padding-left: 45%"> Signup </h1>
 <div class='row'>
     <div class='col-md-6 col-md-offset-2' style='padding-top: 40px'>
         <div class='wrapper'>
-            <%=form_for(@user) do |f|%>
+            <%=form_for(@user, url: signup_url) do |f|%>
+                <%=render 'shared/error_messages'%>
                 <%= f.label :username %>
                 <%= f.text_field :username %>
                 <%= f.label :password %>            
-                <%= f.text_field :password %>
+                <%= f.password_field :password %>
                 <%= f.label :password_confirmation, "Confirm password" %>            
-                <%= f.text_field :password_confirmation %>
+                <%= f.password_field :password_confirmation %>
                 <%= f.submit "Create my account", class: 'btn btn-primary'%>
             <%end%>
         </div>
