@@ -5,8 +5,8 @@
     </div>
     <ul class="nav navbar-nav navbar-left">
       <% if logged_in? %>
-        <li class=<%= active_state '#'%>><%= link_to "Party", '#'%></li>
-        <li class=<%= active_state '#'%>><%= link_to "Characters", '#'%></li>
+        <li class=<%= active_state createparty_path%>><%= link_to "Party", createparty_path%></li>
+        <li class=<%= active_state createchar_path%>><%= link_to "Characters", createchar_path%></li>
         <li class=<%= active_state current_user%>><%= link_to "Profile", current_user%></li>
       <% end %>
     </ul>
