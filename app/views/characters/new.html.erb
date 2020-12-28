@@ -1,2 +1,19 @@
-<h1>Characters</h1>
+<%provide(:title, "Create Character")%>
+<h1>Create Character</h1>
+<div class='row'>
+    <div class='col-md-6 col-md-offset-2' style='padding-top: 40px'>
+        <div class='wrapper'>
+            <%=form_for(@character, url: makechar_url) do |f|%>
+                <%=render 'shared/char_error_messages'%>
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <%= f.label :char_class %>            
+                <%= f.select :char_class, ["Mercedes", "Aran", "Evan", "Zero", "Mechanic", "Phantom", "Marksman", "Night Lord", "Beast Tamer", "Bowmaster", "Pathfinder", "Hayato", "Shade", "Jett", "Kinesis", "Adele", "Angelic Buster", "Illium", "Ark", "Wild Hunter", "Cadena", "Demon Avenger", "Hoyoung", "Kanna", "Archmage (I/L)", "Bishop", "Archmage (F/P)", "Shadower", "Dual Blader", "Battlemage", "Blaster", "Demon Slayer", "Luminous", "Mihile", "Hero", "Paladin", "Dark Knight", "Thunder Breaker", "Wind Archer", "Blaze Wizard", "Night Walker", "Dawn Warrior", "Cannonneer", "Xenon", "Buccaneer", "Corsair", "Kaiser"] %>
+                <%= f.hidden_field :user_id, :value => current_user.id%>
+                <%= hidden_field_tag 'selected', 'none'%>            
+                <%= f.submit "Create character!", class: 'btn btn-primary'%>
+            <%end%>
+        </div>
+    </div>
+</div>
 

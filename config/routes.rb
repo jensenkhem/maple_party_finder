@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/createparty', to: 'groups#new'
-  get '/createchar', to: 'characters#new'
+  post '/makechar', to: 'characters#create'
+  get '/makechar', to: 'characters#new'
   # get '/party', to: 'static_pages#about'
   # get '/characters', to: 'static_pages#about'
   root 'static_pages#home' # Sets the home page of the app, Ex. localhost:3000/ to the home page!
