@@ -1,19 +1,50 @@
-<nav class="navbar-fixed-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">MapleFinder</a>
+
+  <nav class="navbar-fixed-top navbar-inverse visible-md-block visible-lg-block">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">MapleFinder</a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <% if logged_in? %>
+          <li class=<%= active_state createparty_path%>><%= link_to "Party", createparty_path%></li>
+          <li class=<%= active_state characters_path%>><%= link_to "Characters", characters_path%></li>
+          <li class=<%= active_state current_user%>><%= link_to "Profile", current_user%></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li class=<%= active_state about_path%>><%= link_to  "About", about_path %></li>
+          <li class=<%= active_state contact_path%>><%= link_to "Contact", contact_path%></li>
+          <li class=<%= active_state signup_path%>><%= login_display%></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav navbar-left">
-      <% if logged_in? %>
-        <li class=<%= active_state createparty_path%>><%= link_to "Party", createparty_path%></li>
-        <li class=<%= active_state makechar_path%>><%= link_to "Characters", makechar_path%></li>
-        <li class=<%= active_state current_user%>><%= link_to "Profile", current_user%></li>
-      <% end %>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class=<%= active_state about_path%>><%= link_to  "About", about_path %></li>
-        <li class=<%= active_state contact_path%>><%= link_to "Contact", contact_path%></li>
-        <li class=<%= active_state signup_path%>><%= login_display%></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
+
+  <nav class="navbar-fixed-top navbar-inverse visible-sm-block visible-xs-block">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">MapleFinder</a>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 5px; font-size: 16px;" href="#">Actions
+              <b class="caret"></b></a>
+              <ul class="dropdown-menu" style="background-color: black">
+                <% if logged_in? %>
+                  <li><%= link_to "Party", createparty_path%></li>
+                  <li><%= link_to "Characters", characters_path%></li>
+                  <li><%= link_to "Profile", current_user%></li>
+                <% end %>
+                <li><%= link_to  "About", about_path %></li>
+                <li><%= link_to "Contact", contact_path%></li>
+                <li><%= login_display%></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>

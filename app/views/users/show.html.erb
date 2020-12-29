@@ -1,7 +1,7 @@
 <%provide(:title, @user.username)%>
 <h1> Profile </h1>
 <div id='user_info' style='padding-left: 60px'>
-    <h3><%=@user.username%></h3>
+    <h3><u><%=@user.username%></u></h3>
     <h4>Account created at: <%=@user.created_at%></h4>
 </div>
 
@@ -10,7 +10,7 @@
     <ul>
         <% @user.characters.each do |char|%>
             <li> 
-                <h4> Name: <%=char.name%> - Class: <%=char.char_class%></h4>
+                <h4> Name: <%=char.name%> | Class: <%=char.char_class%></h4>
             </li>
         <%end%>
     </ul>

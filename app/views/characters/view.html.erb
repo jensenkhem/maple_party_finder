@@ -1,0 +1,13 @@
+<%provide(:title, "Characters")%>
+<h1> Characters </h1>
+
+<div id="char_container">
+    <ul>
+        <% current_user.characters.each do |char|%>
+            <h4>
+                <li> <%=link_to(char.name, char)%> | <%=char.char_class%></li>
+            </h4>
+        <%end%>
+    </ul>
+    <%=button_to "Add character", makechar_path, method: :get, class: "btn btn-primary"%>
+</div>

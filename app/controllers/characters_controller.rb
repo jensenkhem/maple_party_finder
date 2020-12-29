@@ -10,11 +10,16 @@ class CharactersController < ApplicationController
     if @character.save
       # Handle a successful save
       flash[:success] = "Character has been created!"
-      redirect_to current_user
+      redirect_to characters_path
     else
       # Errors will be displayed in the form?
       render 'new'
     end
+  end
+  def view
+  end
+  def show
+    @character = Character.find(params[:id])
   end
   private
     def character_params
