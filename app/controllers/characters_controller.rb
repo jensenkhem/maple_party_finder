@@ -21,8 +21,29 @@ class CharactersController < ApplicationController
   def show
     @character = Character.find(params[:id])
   end
+
+  def edit
+    @character = Character.find(params[:id])
+  end
+
+  def update
+    @character = Character.find(params[:id])
+    if @character.update_attributes(character_params)
+      flash[:success] = "Character updated successfully"
+      redirect_to @character
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Character.find(params[:id]).destroy
+    flash[:success] = "Character deleted"
+    redirect_to characters_path
+  end
+
   private
     def character_params
-      params.require(:character).permit(:name, :char_class, :user_id)
+      params.require(:character).permit(:name, :char_class, :user_id, :level, :stat)
     end
 end

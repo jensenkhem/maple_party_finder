@@ -10,7 +10,11 @@
                 <%= f.label :char_class %>            
                 <%= f.select :char_class, ["Mercedes", "Aran", "Evan", "Zero", "Mechanic", "Phantom", "Marksman", "Night Lord", "Beast Tamer", "Bowmaster", "Pathfinder", "Hayato", "Shade", "Jett", "Kinesis", "Adele", "Angelic Buster", "Illium", "Ark", "Wild Hunter", "Cadena", "Demon Avenger", "Hoyoung", "Kanna", "Archmage (I/L)", "Bishop", "Archmage (F/P)", "Shadower", "Dual Blader", "Battlemage", "Blaster", "Demon Slayer", "Luminous", "Mihile", "Hero", "Paladin", "Dark Knight", "Thunder Breaker", "Wind Archer", "Blaze Wizard", "Night Walker", "Dawn Warrior", "Cannonneer", "Xenon", "Buccaneer", "Corsair", "Kaiser"] %>
                 <%= f.hidden_field :user_id, :value => current_user.id%>
-                <%= hidden_field_tag 'selected', 'none'%>            
+                <%= hidden_field_tag 'selected', 'none'%>
+                <%= f.label :level %>
+                <%= f.number_field :level%>
+                <%= f.label :stat, "Stat (Ex. 12.5 -> 12.5k)"%>
+                <%= f.number_field :stat, step: 0.1%>
                 <%= f.submit "Create character!", class: 'btn btn-primary'%>
             <%end%>
         </div>

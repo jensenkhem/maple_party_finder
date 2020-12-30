@@ -2,4 +2,17 @@
 <!DOCTYPE html>
 <html>
     <h1>Home</h1>
+    <div id="home_info">
+        <% if logged_in? %>
+            <h3> Welcome back <%=current_user.username%>!</h3>
+            <h3> Common actions: </h3>
+            <div id='common_actions'>
+                <%=button_to "View characters", characters_path, method: :get, class: "btn btn-primary"%>
+            </div>
+        <%end%>
+        <%if !logged_in?%>
+            <h3> Welcome to Jensen's maplestory party app! </h3>
+            <h3> Please <%=link_to "login", login_path%> to see what the app has to offer! </h3>
+        <%end%>
+    </div>
 </html>

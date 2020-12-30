@@ -1,4 +1,14 @@
 <%provide(:title, @character.name)%>
 <div id="char_info">
     <h1><%=@character.name%></h1>
+    <div id="char_stat_info">
+        <h3>Level: <%=@character.level%> </h3>
+        <h3>Class: <%=@character.char_class%> </h3>
+        <h3>Stat: <%=@character.stat%>k </h3>
+        <%=button_to "Edit info", edit_character_path(@character), method: :get, class: "btn btn-primary"%>
+        <%=button_to "Delete character", @character, method: :delete, data: {confirm: "You sure?"}, class: "btn btn-primary", style: "margin-top: 20px"%>
+    </div>
+    <div id="party_info">
+        <h1> Parties </h1>
+    </div>
 </div>
