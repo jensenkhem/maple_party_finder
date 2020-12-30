@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/createparty', to: 'groups#new'
+  post '/createparty', to: 'groups#create'
   post '/makechar', to: 'characters#create'
   get '/makechar', to: 'characters#new'
   get '/characters', to: 'characters#view'

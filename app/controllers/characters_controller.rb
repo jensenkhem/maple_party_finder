@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+  before_action :authenticate
   # We are going to use hidden fields in the form to pass along 
   # the current user's id to the character!! (This is a mental note)
   def new
