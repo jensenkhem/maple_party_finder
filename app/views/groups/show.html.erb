@@ -2,21 +2,31 @@
 <%=render 'shared/group_error_messages'%>
 <h1> <%=@group.name%> </h1>
 <div class='party-container' style="padding-left: 20px">
-    <% if @char_list.include? @group.creator %>
-        <%=button_to "Edit party info", edit_group_path(@group), method: :get, class: "btn btn-primary", style: "width: fit-content"%>
-    <%end%>
     <h3 style="margin-top: 20px" > Boss: <%=@group.boss%></h3>
-    <ul style="padding-left: 40px; margin-bottom: 20px">
+    <ul class="visible-md-block visible-lg-block" style="padding-left: 40px; margin-bottom: 20px">
         <% @group.characters.each do |char|%>
             <h4 style= "padding-top: 20px">
                 <li> 
-                    <%=link_to char.name, char%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k  
+                    <%=link_to char.name, char%> | <%=char.char_class%> | Level <%=char.level%> | <%=char.stat%>k  
                 </li>
             </h4>
         <%end%>
     </ul>
+    <ul class="visible-sm-block visible-xs-block" style="padding-left: 40px; margin-bottom: 20px">
+        <% @group.characters.each do |char|%>
+            <h4 style= "padding-top: 20px">
+                <li> 
+                    <%=link_to char.name, char%> | <%=char.char_class%> 
+                </li>
+            </h4>
+        <%end%>
+    </ul>
+    <% if @char_list.include? @group.creator %>
+        <h2 style='margin-top: 30px'> Manage party </h2>
+    <%end%>
     <% if @char_list.include?(@group.creator) && @group.characters.size > 1%>
-        <div style="width: fit-content">
+        <h3 style='margin-left: 20px;'> Remove member </h3>
+        <div style="width: fit-content; margin-top: 20px; margin-left: 20px">
                 <%=form_for(@group, url: remove_group_url) do |f|%>
                     <%= f.hidden_field :name, value: @group.name %>
                     <%= hidden_field_tag 'selected', 'none'%> 
@@ -27,7 +37,8 @@
                     <%= f.select :selected_char, get_party_chars_except_user%> 
                     <%= f.submit "Remove selected member", class: 'btn btn-primary'%>
                 <%end%>
-            </div>
+        </div>
+        <%=button_to "Edit party info", edit_group_path(@group), method: :get, class: "btn btn-primary", style: "width: fit-content; margin-left: 20px; margin-top: 20px"%>
     <%elsif !user_in_party? && @group.characters.size <= 5%>
         <% if current_user.characters.size != 0%>
             <h4> My characters </h4>

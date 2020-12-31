@@ -1,8 +1,13 @@
 <%provide(:title, "Parties")%>
-<h1> Parties </h1>
+<h1> My Parties </h1>
 
-<div id="char_container">
+<div id="char_container" style="padding-top: 5px; padding-left: 20px">
     <ul>
+        <% if !user_has_parties? %>
+            <h3>
+                <li> Nothing to see here yet! </li>
+            </h3>
+        <%end%>
         <% current_user.characters.each do |char|%>
             <% char.groups.each do |group|%>
                 <h4>
@@ -11,5 +16,5 @@
             <%end%>
         <%end%>
     </ul>
-    <%=button_to "Create new party", createparty_path, method: :get, class: "btn btn-primary"%>
 </div>
+<%=button_to "Create new party", createparty_path, method: :get, class: "btn btn-primary", style: "margin-top: 20px; width: fit-content"%>

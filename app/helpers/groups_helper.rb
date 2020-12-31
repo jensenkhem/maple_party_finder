@@ -17,5 +17,14 @@ module GroupsHelper
         return filtered_list
     end
 
+    def user_has_parties?
+        current_user.characters.each do |char|
+            if char.groups.size > 0
+                return true
+            end
+        end
+        return false
+    end
+
 
 end

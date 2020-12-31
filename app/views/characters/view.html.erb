@@ -1,13 +1,18 @@
 <%provide(:title, "Characters")%>
-<h1> Characters </h1>
+<h1> My Characters </h1>
 
-<div id="char_container">
+<div id="char_container" style='padding-top: 5px; padding-left: 20px'>
     <ul>
+        <% if current_user.characters.size == 0%>
+            <h3>
+                <li> Nothing to see here yet! </li>
+            </h3> 
+        <%end%>
         <% current_user.characters.each do |char|%>
-            <h4>
+            <h3>
                 <li> <%=link_to(char.name, char)%> | <%=char.char_class%></li>
-            </h4>
+            </h3>
         <%end%>
     </ul>
-    <%=button_to "Add character", makechar_path, method: :get, class: "btn btn-primary"%>
 </div>
+<%=button_to "Add character", makechar_path, method: :get, class: "btn btn-primary", style: 'margin-top: 20px; width: fit-content'%>

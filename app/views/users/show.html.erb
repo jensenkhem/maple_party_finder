@@ -5,13 +5,19 @@
     <h4>Account created at: <%=@user.created_at%></h4>
 </div>
 
-<div id='character_container' style='padding-left: 60px'>
-    <h3> Characters: </h3>
-    <ul>
-        <% @user.characters.each do |char|%>
-            <li> 
-                <h4> Name: <%=link_to char.name, char%> | Class: <%=char.char_class%></h4>
-            </li>
-        <%end%>
-    </ul>
+<div id='character_container'>
+    <% if @user.characters.size >= 1 %>
+        <div style="padding-left: 60px">
+            <h3> Characters: </h3>
+            <ul>
+                <% @user.characters.each do |char|%>
+                    <li> 
+                        <h4> Name: <%=link_to char.name, char%> | Class: <%=char.char_class%></h4>
+                    </li>
+                <%end%>
+            </ul>
+        </div>
+    <%else%>
+        <h4 style="padding-top: 40px"> No characters yet! -> <%=link_to "Create one", makechar_path%> to see them here! </h4>
+    <%end%>
 </div>

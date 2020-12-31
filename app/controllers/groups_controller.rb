@@ -2,6 +2,10 @@ class GroupsController < ApplicationController
     before_action :authenticate
     def new
         @group = Group.new
+        if current_user.characters.size == 0
+            flash[:danger] = "You need at least one character to create a party!"
+            redirect_to makechar_path
+        end
     end
 
     def create

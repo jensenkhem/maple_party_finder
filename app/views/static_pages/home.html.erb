@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
     <h1>Home</h1>
-    <div id="home_info">
+    <div id="home_info" style="padding-left: 20px">
         <% if logged_in? %>
-            <h3> Welcome back <%=current_user.username%>!</h3>
+            <h3> Welcome back <u><%=current_user.username%>!</u></h3>
             <h3> Common actions: </h3>
             <div id='common_actions'>
-                <%=button_to "View characters", characters_path, method: :get, class: "btn btn-primary"%>
+                <%=button_to "Create party", createparty_path, method: :get, class: "btn btn-primary", style: "margin-top: 15px; margin-left: 30px"%>
+                <%=button_to "Create character", makechar_path, method: :get, class: "btn btn-primary", style: "margin-top: 15px; margin-left: 30px"%>
             </div>
         <%end%>
         <%if !logged_in?%>
