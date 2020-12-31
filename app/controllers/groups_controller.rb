@@ -21,6 +21,45 @@ class GroupsController < ApplicationController
         @char_list = get_current_user_chars
     end
 
+    def edit
+        @group = Group.find_by id: params[:id]
+        char_list = get_current_user_chars
+        if !char_list.include? @group.creator
+            redirect_to @group
+        end
+    end
+
+    def remove
+        @group = Group.find_by id: params[:id] 
+        char = Character.find_by name: params[:group][:selected_char]
+        @group.characters.delete(char)
+        flash[:success] = char.name +  " has been removed from the party!"
+        redirect_to @group
+    end
+
+    def join
+        @group = Group.find_by id: params[:id]
+        char_to_join = Character.find_by name: params[:group][:selected_char]
+        if @group.characters.size < 6
+            @group.characters << char_to_join
+            flash[:success] = "Joined the party!"
+            redirect_to @group
+        else
+            flash[:danger] = "Party is full!"
+            redirect_to @group
+        end
+    end
+
+    def update
+        @group = Group.find_by id: params[:id]
+        if @group.update_attributes(group_params)
+            flash[:success] = "Party updated successfully!"
+            redirect_to @group
+        else
+            render 'edit'
+        end
+    end
+
     private
         def group_params
             params.require(:group).permit(:name, :creator, :boss)

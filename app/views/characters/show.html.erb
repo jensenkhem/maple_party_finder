@@ -5,8 +5,10 @@
         <h3>Level: <%=@character.level%> </h3>
         <h3>Class: <%=@character.char_class%> </h3>
         <h3>Stat: <%=@character.stat%>k </h3>
-        <%=button_to "Edit info", edit_character_path(@character), method: :get, class: "btn btn-primary"%>
-        <%=button_to "Delete character", @character, method: :delete, data: {confirm: "You sure?"}, class: "btn btn-primary", style: "margin-top: 20px"%>
+        <% if get_current_user_chars.include? @character.name%>
+            <%=button_to "Edit info", edit_character_path(@character), method: :get, class: "btn btn-primary"%>
+            <%=button_to "Delete character", @character, method: :delete, data: {confirm: "You sure?"}, class: "btn btn-primary", style: "margin-top: 20px"%>
+        <%end%>
     </div>
     <div id="party_info">
         <h1> Parties </h1>

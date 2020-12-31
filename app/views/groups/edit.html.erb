@@ -1,0 +1,18 @@
+<%provide(:title, "Edit party")%>
+<h1> Edit party </h1>
+<div class='row'>
+    <div class='col-md-6 col-md-offset-2' style='padding-top: 40px'>
+        <div class='wrapper'>
+            <%=form_for(@group) do |f|%>
+                <%=render 'shared/group_error_messages'%>
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+                <%= f.hidden_field :creator, value: @group.creator %>
+                <%= hidden_field_tag 'selected', 'none'%>         
+                <%= f.label :boss %>
+                <%= f.select :boss, ["Undecided", "Lotus (N)", "Damien (N)", "Lucid (N)", "Will (N)", "Lotus (H)", "Damien (H)", "Lucid (H)", "Will (H)"]%>
+                <%= f.submit "Save changes", class: 'btn btn-primary'%>
+            <%end%>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@
       </div>
       <ul class="nav navbar-nav navbar-left">
         <% if logged_in? %>
-          <li class=<%= active_state createparty_path%>><%= link_to "Party", createparty_path%></li>
+          <li class=<%= active_state createparty_path%>><%= link_to "Party", parties_path%></li>
           <li class=<%= active_state characters_path%>><%= link_to "Characters", characters_path%></li>
           <li class=<%= active_state current_user%>><%= link_to "Profile", current_user%></li>
         <% end %>
@@ -34,7 +34,7 @@
               <b class="caret"></b></a>
               <ul class="dropdown-menu" style="background-color: black">
                 <% if logged_in? %>
-                  <li><%= link_to "Party", createparty_path%></li>
+                  <li><%= link_to "Party", parties_path%></li>
                   <li><%= link_to "Characters", characters_path%></li>
                   <li><%= link_to "Profile", current_user%></li>
                 <% end %>

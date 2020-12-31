@@ -16,10 +16,18 @@ Rails.application.routes.draw do
   post '/makechar', to: 'characters#create'
   get '/makechar', to: 'characters#new'
   get '/characters', to: 'characters#view'
+  get '/parties', to: 'groups#view'
+  # patch '/join', to: 'groups#join'
+  # patch '/removefromgroup', to: 'groups#remove'
   # get '/party', to: 'static_pages#about'
   # get '/characters', to: 'static_pages#about'
   root 'static_pages#home' # Sets the home page of the app, Ex. localhost:3000/ to the home page!
   resources :users
-  resources :groups
+  resources :groups do
+    member do
+      patch 'join'
+      patch 'remove'
+    end
+  end
   resources :characters
 end

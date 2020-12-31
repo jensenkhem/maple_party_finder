@@ -1,17 +1,48 @@
 <%provide(:title, @group.name)%>
+<%=render 'shared/group_error_messages'%>
 <h1> <%=@group.name%> </h1>
-<% if @char_list.include? @group.creator %>
-    <h4> Got in here! -> (You created this party!) </h4>
-<%end%>
-<ul>
-    <% @group.characters.each do |char|%>
-        <h4 style= "padding-top: 20px">
-            <li> 
-                <%=char.name%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k  
-                <%if @char_list.include? @group.creator %>
-                    | <%= link_to  "Remove", '#' %>
-                <%end%>
-            </li>
-        </h4>
+<div class='party-container' style="padding-left: 20px">
+    <% if @char_list.include? @group.creator %>
+        <%=button_to "Edit party info", edit_group_path(@group), method: :get, class: "btn btn-primary", style: "width: fit-content"%>
     <%end%>
-</ul>
+    <h3 style="margin-top: 20px" > Boss: <%=@group.boss%></h3>
+    <ul style="padding-left: 40px; margin-bottom: 20px">
+        <% @group.characters.each do |char|%>
+            <h4 style= "padding-top: 20px">
+                <li> 
+                    <%=link_to char.name, char%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k  
+                </li>
+            </h4>
+        <%end%>
+    </ul>
+    <% if @char_list.include?(@group.creator) && @group.characters.size > 1%>
+        <div style="width: fit-content">
+                <%=form_for(@group, url: remove_group_url) do |f|%>
+                    <%= f.hidden_field :name, value: @group.name %>
+                    <%= hidden_field_tag 'selected', 'none'%> 
+                    <%= f.hidden_field :creator, value: @group.creator %>
+                    <%= hidden_field_tag 'selected', 'none'%>         
+                    <%= f.hidden_field :boss, value: @group.boss %>
+                    <%= hidden_field_tag 'selected', 'none'%>
+                    <%= f.select :selected_char, get_party_chars_except_user%> 
+                    <%= f.submit "Remove selected member", class: 'btn btn-primary'%>
+                <%end%>
+            </div>
+    <%elsif !user_in_party? && @group.characters.size <= 5%>
+        <% if current_user.characters.size != 0%>
+            <h4> My characters </h4>
+            <div style="width: fit-content">
+                <%=form_for(@group, url: join_group_url) do |f|%>
+                    <%= f.hidden_field :name, value: @group.name %>
+                    <%= hidden_field_tag 'selected', 'none'%> 
+                    <%= f.hidden_field :creator, value: @group.creator %>
+                    <%= hidden_field_tag 'selected', 'none'%>         
+                    <%= f.hidden_field :boss, value: @group.boss %>
+                    <%= hidden_field_tag 'selected', 'none'%>
+                    <%= f.select :selected_char, current_user.characters.map{|c| c.name}%> 
+                    <%= f.submit "Join party!", class: 'btn btn-primary'%>
+                <%end%>
+            </div>
+        <%end%>
+    <%end%>
+</div>

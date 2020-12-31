@@ -1,0 +1,15 @@
+<%provide(:title, "Parties")%>
+<h1> Parties </h1>
+
+<div id="char_container">
+    <ul>
+        <% current_user.characters.each do |char|%>
+            <% char.groups.each do |group|%>
+                <h4>
+                    <li> <%=link_to(group.name, group)%> | <%=group.boss%> | Character: <%=char.name%></li>
+                </h4>
+            <%end%>
+        <%end%>
+    </ul>
+    <%=button_to "Create new party", createparty_path, method: :get, class: "btn btn-primary"%>
+</div>

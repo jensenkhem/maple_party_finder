@@ -10,7 +10,7 @@
     <ul>
         <% @user.characters.each do |char|%>
             <li> 
-                <h4> Name: <%=char.name%> | Class: <%=char.char_class%></h4>
+                <h4> Name: <%=link_to char.name, char%> | Class: <%=char.char_class%></h4>
             </li>
         <%end%>
     </ul>
