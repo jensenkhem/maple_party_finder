@@ -1,2 +1,17 @@
 <%provide(:title, @group.name)%>
 <h1> <%=@group.name%> </h1>
+<% if @char_list.include? @group.creator %>
+    <h4> Got in here! -> (You created this party!) </h4>
+<%end%>
+<ul>
+    <% @group.characters.each do |char|%>
+        <h4 style= "padding-top: 20px">
+            <li> 
+                <%=char.name%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k  
+                <%if @char_list.include? @group.creator %>
+                    | <%= link_to  "Remove", '#' %>
+                <%end%>
+            </li>
+        </h4>
+    <%end%>
+</ul>

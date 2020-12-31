@@ -10,5 +10,25 @@
     </div>
     <div id="party_info">
         <h1> Parties </h1>
+        <div class="party-container">
+            <% @character.groups.each do |pty|%>
+                <div class="party-header" style="padding-left: 20px">
+                    <h3><u> <%=link_to pty.name, pty%> </u></h3>
+                    <h4 style="padding-left: 20px"> Boss: <%=pty.boss%> </h4>
+                    <div class="party-members">
+                        <ul>
+                            <% pty.characters.each do |char|%>
+                                <%if char.name != @character.name%>
+                                    <li> <%=link_to char.name, char%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k</li>
+                                <%end%>
+                                <% if char.name == @character.name%>
+                                    <li> <%=char.name%> | <%=char.char_class%> | Lvl <%=char.level%> | <%=char.stat%>k</li>
+                                <%end%>
+                            <%end%>
+                        </ul>
+                    </div>
+                </div>
+            <%end%>
+        </div>
     </div>
 </div>

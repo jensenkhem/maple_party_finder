@@ -18,6 +18,7 @@ class GroupsController < ApplicationController
 
     def show
         @group = Group.find(params[:id])
+        @char_list = get_current_user_chars
     end
 
     private
