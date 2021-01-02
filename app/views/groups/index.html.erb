@@ -22,11 +22,13 @@
 <ul style="padding-left: 50px; padding-top: 5px">
     <% if @groups.size != 0%>
         <% @groups.each do |group| %>
+            <% if group.characters.size > 0 %>
                 <h3>
                     <li style="padding-left: 20px">
                         <%= link_to group.name, group %> | <%=group.boss%> | Members: (<%=group.characters.size%>/6)
                     </li>
                 </h3>
+            <% end %>
         <% end %>
     <%else%>
         <h3> <li style="padding-left: 20px">No parties were found with these filters! </li></h3>
