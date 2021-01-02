@@ -17,7 +17,7 @@
                 <%end%>
             </ul>
         </div>
-    <%else%>
+    <%elsif @user.username == current_user.username%>
         <h4 style="padding-top: 40px"> No characters yet! -> <%=link_to "Create one", makechar_path%> to see them here! </h4>
     <%end%>
 </div>

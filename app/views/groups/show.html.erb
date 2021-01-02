@@ -21,7 +21,7 @@
             </h4>
         <%end%>
     </ul>
-    <% if @char_list.include? @group.creator %>
+    <% if @char_list.include? @group.creator && @group.characters.size > 1%>
         <h2 style='margin-top: 30px'> Manage party </h2>
     <%end%>
     <% if @char_list.include?(@group.creator) && @group.characters.size > 1%>
@@ -38,7 +38,6 @@
                     <%= f.submit "Remove selected member", class: 'btn btn-primary'%>
                 <%end%>
         </div>
-        <%=button_to "Edit party info", edit_group_path(@group), method: :get, class: "btn btn-primary", style: "width: fit-content; margin-left: 20px; margin-top: 20px"%>
     <%elsif !user_in_party? && @group.characters.size <= 5%>
         <% if current_user.characters.size != 0%>
             <h4> My characters </h4>
@@ -56,4 +55,8 @@
             </div>
         <%end%>
     <%end%>
+    <%if @char_list.include?(@group.creator)%>
+        <%=button_to "Edit party info", edit_group_path(@group), method: :get, class: "btn btn-primary", style: "width: fit-content; margin-left: 20px; margin-top: 20px"%>
+    <%end%>
+    <h3> Party link: <%=request.original_url%> </h3>
 </div>

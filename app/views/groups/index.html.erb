@@ -1,0 +1,35 @@
+<% provide(:title, 'Party search') %>
+<h1>Party search</h1>
+<div style="width: fit-content; padding-left: 20px">
+    <h3> Filters </h3>
+    <div style="padding-left: 20px">
+        <%= form_tag(groups_path, method: "get") do %>
+            <%= label_tag(:boss_filter, "Boss:") %>
+            <%= select_tag(:boss_filter, options_for_select(["Undecided", "Lotus (N)", "Damien (N)", "Lucid (N)", "Will (N)", "Lotus (H)", "Damien (H)", "Lucid (H)", "Will (H)"], selected: params[:boss_filter] || nil), include_blank: true) %>
+            <%= submit_tag("Filter", class: "btn btn-primary") %>
+        <% end %>
+    </div>
+</div>
+<%if params[:boss_filter].present?%>
+    <div>
+        <h3 style="padding-left: 20px"> <u>Results - Filtered by: </u></h3>
+        <h4 style="padding-left: 40px"> Boss: (<%=params[:boss_filter]%>)</h4>
+    </div>
+<%else%>
+    <h3 style="padding-left: 20px"> <u>Results</u></h3>
+<%end%>
+<%= will_paginate %>
+<ul style="padding-left: 50px; padding-top: 5px">
+    <% if @groups.size != 0%>
+        <% @groups.each do |group| %>
+                <h3>
+                    <li style="padding-left: 20px">
+                        <%= link_to group.name, group %> | <%=group.boss%> | Members: (<%=group.characters.size%>/6)
+                    </li>
+                </h3>
+        <% end %>
+    <%else%>
+        <h3> <li style="padding-left: 20px">No parties were found with these filters! </li></h3>
+    <%end%>
+</ul>
+<%= will_paginate %>

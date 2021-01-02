@@ -33,6 +33,14 @@ class GroupsController < ApplicationController
         end
     end
 
+    def index
+        if params[:boss_filter].present?
+            @groups = Group.filter_by_boss(params[:boss_filter]).paginate(page: params[:page]) 
+        else
+            @groups = Group.all.paginate(page: params[:page])
+        end
+    end
+
     def remove
         @group = Group.find_by id: params[:id] 
         char = Character.find_by name: params[:group][:selected_char]

@@ -9,6 +9,7 @@
             <div id='common_actions'>
                 <%=button_to "Create party", createparty_path, method: :get, class: "btn btn-primary", style: "margin-top: 15px; margin-left: 30px"%>
                 <%=button_to "Create character", makechar_path, method: :get, class: "btn btn-primary", style: "margin-top: 15px; margin-left: 30px"%>
+                <%=button_to "Search for party", groups_path, method: :get, class: "btn btn-primary", style: "margin-top: 15px; margin-left: 30px"%>
             </div>
         <%end%>
         <%if !logged_in?%>

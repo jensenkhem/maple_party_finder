@@ -6,9 +6,10 @@
       </div>
       <ul class="nav navbar-nav navbar-left">
         <% if logged_in? %>
-          <li class=<%= active_state createparty_path%>><%= link_to "Party", parties_path%></li>
-          <li class=<%= active_state characters_path%>><%= link_to "Characters", characters_path%></li>
+          <li class=<%= active_state createparty_path%>><%= link_to "My Parties", parties_path%></li>
+          <li class=<%= active_state characters_path%>><%= link_to "My Characters", characters_path%></li>
           <li class=<%= active_state current_user%>><%= link_to "Profile", current_user%></li>
+          <li class=<%= active_state groups_path%>><%= link_to "Party Search", groups_path%></li> 
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -34,9 +35,10 @@
               <b class="caret"></b></a>
               <ul class="dropdown-menu" style="background-color: black">
                 <% if logged_in? %>
-                  <li><%= link_to "Party", parties_path%></li>
-                  <li><%= link_to "Characters", characters_path%></li>
+                  <li><%= link_to "My Parties", parties_path%></li>
+                  <li><%= link_to "My Characters", characters_path%></li>
                   <li><%= link_to "Profile", current_user%></li>
+                  <li><%= link_to "Party Search", groups_path%></li> 
                 <% end %>
                 <li><%= link_to  "About", about_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
