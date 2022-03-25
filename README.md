@@ -18,3 +18,4 @@ Creating the application was a great learning experience for me, and taught me a
 - Passing information between the frontend/backend
 - Securely storing user data / credentials with encryption
 - Hosting web applications on the internet and securing via TLS certificates
+- Test driven development fundementals
